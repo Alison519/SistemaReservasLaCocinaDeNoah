@@ -109,7 +109,7 @@ public class MesaDAO {
     }
 
     public void eliminar(int id) throws SQLException {
-        String sql = "DELETE FROM mesas WHERE id_cliente = ?";
+        String sql = "DELETE FROM mesas WHERE id_mesa = ?";
         try (Connection conn = ConnectionBD.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();

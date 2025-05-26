@@ -25,9 +25,11 @@ public class ReservasDAO {
     private MesaDAO mesaDAO = new MesaDAO();
 
     public int insertar(Reservas reserva) throws SQLException {
+        //CONSULTA
         String sql = "INSERT INTO reservas (id_cliente, id_mesa, fecha_reserva, hora_inicio, hora_fin, num_personas, estado, observaciones) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 
-        try (Connection conn = ConnectionBD.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try (Connection conn = ConnectionBD.getConnection(); //INTENTA LA CONEXION
+                 PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {  //PREPARA LA SENTENCIA LA CONEXION
             stmt.setInt(1, reserva.getCliente().getIdCliente());
             stmt.setInt(2, reserva.getMesa().getIdMesa());
             stmt.setObject(3, reserva.getFechaReserva());
